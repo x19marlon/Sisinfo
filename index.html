@@ -1,0 +1,1995 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Indupack — Soluciones Premium en Empaque Industrial</title>
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <style>
+    /* ==========================================================================
+       DESIGN SYSTEM (Green Palette / Dark Mode / Glassmorphism)
+       ========================================================================== */
+    :root {
+      --color-primary-900: #064e3b;
+      --color-primary-800: #065f46;
+      --color-primary-700: #047857;
+      --color-primary-600: #059669;
+      --color-primary-500: #10b981;
+      --color-primary-400: #34d399;
+      --color-primary-300: #6ee7b7;
+      --color-primary-200: #a7f3d0;
+      --color-primary-100: #d1fae5;
+      --color-primary-50:  #ecfdf5;
+
+      --color-dark:        #070d0a;
+      --color-dark-card:   #0f1c15;
+      --color-dark-surface:#14271e;
+      --color-dark-border: #1a3528;
+      --color-dark-hover:  #204333;
+
+      --color-white:       #ffffff;
+      --color-gray-400:    #9ca3af;
+      --color-gray-500:    #6b7280;
+      --color-gray-600:    #4b5563;
+      --color-accent:      #f59e0b;
+      --color-danger:      #ef4444;
+      --color-success:     #10b981;
+
+      --font-family:       'Inter', sans-serif;
+      --radius-sm:  0.375rem;
+      --radius-md:  0.5rem;
+      --radius-lg:  0.75rem;
+      --radius-xl:  1rem;
+      --radius-2xl: 1.5rem;
+      --radius-full:9999px;
+
+      --shadow-sm:  0 1px 2px rgba(6, 78, 59, 0.08);
+      --shadow-md:  0 4px 6px -1px rgba(6, 78, 59, 0.1);
+      --shadow-lg:  0 10px 15px -3px rgba(6, 78, 59, 0.12);
+      --shadow-xl:  0 20px 25px -5px rgba(6, 78, 59, 0.15);
+      --shadow-glow:0 0 20px rgba(16, 185, 129, 0.3);
+
+      --glass-bg:    rgba(15, 28, 21, 0.8);
+      --glass-border:rgba(26, 53, 40, 0.5);
+      --glass-blur:  12px;
+
+      --transition-fast:   150ms ease;
+      --transition-base:   250ms ease;
+      --transition-slow:   400ms ease;
+      --transition-spring: 500ms cubic-bezier(0.34, 1.56, 0.64, 1);
+
+      --z-header:    200;
+      --z-drawer:    300;
+      --z-toast:     500;
+      --z-splash:    9999;
+
+      --container-xl:  1280px;
+      --header-height: 72px;
+    }
+
+    /* ---- Reset & Scrollbars ---- */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    html {
+      scroll-behavior: smooth;
+    }
+    body {
+      font-family: var(--font-family);
+      background-color: var(--color-dark);
+      color: var(--color-white);
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: var(--color-dark);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: var(--color-dark-border);
+      border-radius: var(--radius-full);
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--color-primary-600);
+    }
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+    button {
+      cursor: pointer;
+      border: none;
+      background: none;
+      font: inherit;
+    }
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* ---- Animations ---- */
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes scaleIn {
+      from { opacity: 0; transform: scale(0.95); }
+      to   { opacity: 1; transform: scale(1); }
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50%      { transform: translateY(-10px); }
+    }
+    @keyframes drawCheck {
+      to { stroke-dashoffset: 0; }
+    }
+
+    .animate-float {
+      animation: float 4s ease-in-out infinite;
+    }
+
+    /* ---- Layout Utilities ---- */
+    .container {
+      max-width: var(--container-xl);
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+    .flex { display: flex; }
+    .flex-col { flex-direction: column; }
+    .items-center { align-items: center; }
+    .justify-between { justify-content: space-between; }
+    .justify-center { justify-content: center; }
+    .grid { display: grid; gap: 1.5rem; }
+    .grid--2 { grid-template-columns: repeat(2, 1fr); }
+    .grid--3 { grid-template-columns: repeat(3, 1fr); }
+    .grid--4 { grid-template-columns: repeat(4, 1fr); }
+    .gap-2 { gap: 0.5rem; }
+    .gap-4 { gap: 1rem; }
+    .gap-6 { gap: 1.5rem; }
+    .gap-8 { gap: 2rem; }
+    .mt-4 { margin-top: 1rem; }
+    .mt-8 { margin-top: 2rem; }
+    .mb-4 { margin-bottom: 1rem; }
+    .mb-8 { margin-bottom: 2rem; }
+    .text-center { text-align: center; }
+    .text-muted { color: var(--color-gray-400); }
+    .text-primary { color: var(--color-primary-400); }
+    .font-semibold { font-weight: 600; }
+    .font-bold { font-weight: 700; }
+    .hidden { display: none !important; }
+
+    /* ==========================================================================
+       UI COMPONENTS (Buttons, Cards, Inputs, Badge, Header, Hero, Footer, Drawer)
+       ========================================================================== */
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.5rem;
+      font-size: 0.875rem;
+      font-weight: 600;
+      border-radius: var(--radius-lg);
+      transition: all var(--transition-base);
+      white-space: nowrap;
+    }
+    .btn--primary {
+      background: linear-gradient(135deg, var(--color-primary-600), var(--color-primary-700));
+      color: var(--color-white);
+      box-shadow: var(--shadow-md);
+    }
+    .btn--primary:hover {
+      background: linear-gradient(135deg, var(--color-primary-500), var(--color-primary-600));
+      box-shadow: var(--shadow-lg), 0 0 20px rgba(16, 185, 129, 0.2);
+      transform: translateY(-1px);
+    }
+    .btn--outline {
+      border: 1.5px solid var(--color-primary-500);
+      color: var(--color-primary-400);
+    }
+    .btn--outline:hover {
+      background: rgba(16, 185, 129, 0.1);
+      border-color: var(--color-primary-400);
+    }
+    .btn--danger {
+      background: var(--color-danger);
+      color: var(--color-white);
+    }
+    .btn--danger:hover {
+      background: #dc2626;
+    }
+    .btn--ghost {
+      color: var(--color-gray-400);
+    }
+    .btn--ghost:hover {
+      background: var(--color-dark-hover);
+      color: var(--color-white);
+    }
+    .btn--sm {
+      padding: 0.5rem 1rem;
+      font-size: 0.75rem;
+    }
+    .btn--full { width: 100%; }
+
+    /* Inputs */
+    .input-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.375rem;
+    }
+    .input-group label {
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--color-gray-400);
+    }
+    .input {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      background: var(--color-dark-card);
+      border: 1.5px solid var(--color-dark-border);
+      border-radius: var(--radius-md);
+      color: var(--color-white);
+      font-size: 0.875rem;
+      transition: all var(--transition-fast);
+    }
+    .input:focus {
+      outline: none;
+      border-color: var(--color-primary-500);
+      box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.15);
+    }
+    .input::placeholder { color: var(--color-gray-600); }
+
+    /* Badges */
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.25rem 0.75rem;
+      font-size: 0.75rem;
+      font-weight: 600;
+      border-radius: var(--radius-full);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .badge--primary {
+      background: rgba(16, 185, 129, 0.15);
+      color: var(--color-primary-400);
+    }
+
+    /* Ratings */
+    .rating {
+      display: inline-flex;
+      align-items: center;
+      gap: 2px;
+      color: var(--color-accent);
+      font-size: 0.875rem;
+    }
+
+    /* Cards */
+    .card {
+      background: var(--color-dark-card);
+      border: 1px solid var(--color-dark-border);
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      transition: all var(--transition-base);
+    }
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-xl);
+      border-color: var(--color-primary-700);
+    }
+
+    /* Header */
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: var(--header-height);
+      background: var(--glass-bg);
+      backdrop-filter: blur(var(--glass-blur));
+      -webkit-backdrop-filter: blur(var(--glass-blur));
+      border-bottom: 1px solid var(--glass-border);
+      z-index: var(--z-header);
+    }
+    .header__inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 100%;
+    }
+    .header__logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--color-white);
+      letter-spacing: -0.025em;
+    }
+    .header__logo img {
+      height: 40px;
+      width: 40px;
+    }
+    .header__logo-text {
+      background: linear-gradient(135deg, var(--color-primary-400), var(--color-primary-300));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .header__nav {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+    .header__nav-link {
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--color-gray-400);
+      transition: color var(--transition-fast);
+      position: relative;
+    }
+    .header__nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--color-primary-400);
+      transition: width var(--transition-base);
+    }
+    .header__nav-link:hover,
+    .header__nav-link--active {
+      color: var(--color-primary-400);
+    }
+    .header__nav-link:hover::after,
+    .header__nav-link--active::after {
+      width: 100%;
+    }
+    .header__actions {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .header__action-btn {
+      position: relative;
+      width: 42px;
+      height: 42px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: var(--radius-lg);
+      color: var(--color-gray-400);
+      font-size: 1.25rem;
+      transition: all var(--transition-fast);
+    }
+    .header__action-btn:hover {
+      background: var(--color-dark-hover);
+      color: var(--color-primary-400);
+    }
+    .header__cart-badge {
+      position: absolute;
+      top: 4px;
+      right: 4px;
+      min-width: 18px;
+      height: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--color-primary-500);
+      color: var(--color-white);
+      font-size: 10px;
+      font-weight: 700;
+      border-radius: var(--radius-full);
+      padding: 0 4px;
+    }
+    .header__user-avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: var(--radius-full);
+      background: linear-gradient(135deg, var(--color-primary-600), var(--color-primary-850));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.875rem;
+      font-weight: 700;
+      cursor: pointer;
+      border: 1px solid var(--color-primary-500);
+    }
+
+    /* Hero */
+    .hero {
+      position: relative;
+      padding: 7rem 0 5rem 0;
+      background: linear-gradient(135deg, var(--color-dark) 0%, var(--color-primary-900) 100%);
+      overflow: hidden;
+    }
+    .hero__inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+    }
+    .hero__badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.375rem 0.75rem;
+      background: rgba(16, 185, 129, 0.1);
+      border: 1.5px solid rgba(16, 185, 129, 0.2);
+      border-radius: var(--radius-full);
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--color-primary-400);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 1.5rem;
+    }
+    .hero__title {
+      font-size: 3.5rem;
+      font-weight: 800;
+      line-height: 1.1;
+      margin-bottom: 1.5rem;
+    }
+    .hero__title span {
+      background: linear-gradient(135deg, var(--color-primary-400), var(--color-primary-300));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero__subtitle {
+      font-size: 1.125rem;
+      color: var(--color-gray-400);
+      line-height: 1.6;
+      margin-bottom: 2.5rem;
+    }
+    .hero__actions {
+      display: flex;
+      gap: 1rem;
+    }
+    .hero__visual-img {
+      border-radius: var(--radius-2xl);
+      box-shadow: var(--shadow-xl);
+      border: 1px solid var(--color-primary-800);
+    }
+
+    /* Cart Drawer */
+    .cart-drawer {
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: 100%;
+      max-width: 440px;
+      height: 100%;
+      background: var(--color-dark-card);
+      border-left: 1px solid var(--color-dark-border);
+      box-shadow: var(--shadow-xl);
+      z-index: var(--z-drawer);
+      display: flex;
+      flex-direction: column;
+      transform: translateX(100%);
+      transition: transform var(--transition-spring);
+    }
+    .cart-drawer--open {
+      transform: translateX(0);
+    }
+    .cart-drawer__header {
+      padding: 1.5rem;
+      border-bottom: 1px solid var(--color-dark-border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .cart-drawer__close {
+      font-size: 1.5rem;
+      color: var(--color-gray-400);
+    }
+    .cart-drawer__body {
+      flex: 1;
+      overflow-y: auto;
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+    .cart-drawer__footer {
+      padding: 1.5rem;
+      border-top: 1px solid var(--color-dark-border);
+      background: var(--color-dark);
+    }
+    .cart-drawer__total-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 1.125rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+    }
+
+    /* Cart Drawer Item */
+    .cart-item {
+      display: flex;
+      gap: 1rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--color-dark-border);
+    }
+    .cart-item img {
+      width: 64px;
+      height: 64px;
+      border-radius: var(--radius-md);
+      object-fit: cover;
+      background: var(--color-dark-surface);
+    }
+    .cart-item__info {
+      flex: 1;
+    }
+    .cart-item__name {
+      font-size: 0.875rem;
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+    }
+    .cart-item__price {
+      color: var(--color-primary-400);
+      font-size: 0.875rem;
+      font-weight: 700;
+    }
+    .cart-item__actions {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 0.5rem;
+    }
+    .cart-item__qty {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      border: 1px solid var(--color-dark-border);
+      border-radius: var(--radius-sm);
+      padding: 0.25rem 0.5rem;
+      font-size: 0.875rem;
+    }
+    .cart-item__qty-btn {
+      font-weight: 700;
+      color: var(--color-primary-400);
+    }
+
+    /* Product Card Grid view */
+    .product-card {
+      display: flex;
+      flex-direction: column;
+    }
+    .product-card__img-wrap {
+      aspect-ratio: 1;
+      overflow: hidden;
+      background: var(--color-dark-surface);
+      position: relative;
+    }
+    .product-card__img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform var(--transition-slow);
+    }
+    .product-card:hover .product-card__img {
+      transform: scale(1.05);
+    }
+    .product-card__category {
+      position: absolute;
+      top: 0.75rem;
+      left: 0.75rem;
+      background: rgba(15, 28, 21, 0.8);
+      border: 1px solid var(--color-primary-600);
+      font-size: 0.75rem;
+      padding: 0.25rem 0.5rem;
+      border-radius: var(--radius-sm);
+    }
+    .product-card__body {
+      padding: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+    .product-card__name {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      min-height: 2.5rem;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .product-card__price {
+      font-size: 1.125rem;
+      font-weight: 700;
+      color: var(--color-primary-400);
+      margin-bottom: 1rem;
+    }
+
+    /* Catalog filtering layout */
+    .catalog-layout {
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      gap: 2rem;
+      padding: 3rem 0;
+    }
+    .catalog-filters {
+      background: var(--color-dark-card);
+      border: 1px solid var(--color-dark-border);
+      border-radius: var(--radius-xl);
+      padding: 1.5rem;
+      align-self: start;
+    }
+    .filter-section-title {
+      font-size: 0.875rem;
+      font-weight: 700;
+      color: var(--color-white);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 1rem;
+    }
+    .filter-pills {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .filter-pill {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.625rem 0.75rem;
+      border-radius: var(--radius-md);
+      font-size: 0.875rem;
+      color: var(--color-gray-400);
+      cursor: pointer;
+      transition: all var(--transition-fast);
+    }
+    .filter-pill:hover, .filter-pill--active {
+      background: var(--color-dark-hover);
+      color: var(--color-primary-400);
+    }
+
+    /* Toast system */
+    .toast-container {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      z-index: var(--z-toast);
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    .toast {
+      background: var(--color-dark-card);
+      border: 1px solid var(--color-primary-500);
+      border-left: 4px solid var(--color-primary-500);
+      border-radius: var(--radius-lg);
+      padding: 1rem 1.5rem;
+      box-shadow: var(--shadow-xl);
+      color: var(--color-white);
+      font-size: 0.875rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      animation: fadeInUp var(--transition-base) forwards;
+    }
+
+    /* Product Details Page */
+    .product-detail-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      padding: 3rem 0;
+      align-items: start;
+    }
+    .product-detail-img {
+      border-radius: var(--radius-2xl);
+      border: 1px solid var(--color-dark-border);
+      background: var(--color-dark-surface);
+      aspect-ratio: 1;
+      object-fit: cover;
+    }
+    .detail-features {
+      margin-top: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .detail-feature-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.875rem;
+      color: var(--color-gray-400);
+    }
+    .detail-feature-item::before {
+      content: '✓';
+      color: var(--color-primary-400);
+      font-weight: 700;
+    }
+
+    /* Checkout Page Grid */
+    .checkout-layout {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr;
+      gap: 2rem;
+      padding: 3rem 0;
+    }
+
+    /* Profile page layout */
+    .profile-layout {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 2rem;
+      padding: 3rem 0;
+    }
+    .profile-sidebar {
+      background: var(--color-dark-card);
+      border: 1px solid var(--color-dark-border);
+      border-radius: var(--radius-xl);
+      padding: 1.5rem;
+    }
+
+    /* Footer */
+    .footer {
+      background: var(--color-dark-card);
+      border-top: 1px solid var(--color-dark-border);
+      padding: 4rem 0 2rem 0;
+      margin-top: auto;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1.5fr;
+      gap: 3rem;
+      margin-bottom: 3rem;
+    }
+    .footer-col h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 1.25rem;
+      color: var(--color-white);
+    }
+    .footer-links {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    .footer-link {
+      font-size: 0.875rem;
+      color: var(--color-gray-400);
+      transition: color var(--transition-fast);
+    }
+    .footer-link:hover {
+      color: var(--color-primary-400);
+    }
+
+    /* Splash Screen styling */
+    .splash {
+      animation: fadeIn 0.5s ease-out;
+    }
+
+    /* Overlay backdrop */
+    .drawer-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(4px);
+      z-index: 150;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity var(--transition-base);
+    }
+    .drawer-overlay--visible {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .grid--4 { grid-template-columns: repeat(3, 1fr); }
+      .footer-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 768px) {
+      .hero__inner { grid-template-columns: 1fr; text-align: center; }
+      .hero__actions { justify-content: center; }
+      .catalog-layout, .product-detail-layout, .checkout-layout, .profile-layout {
+        grid-template-columns: 1fr;
+      }
+      .grid--3, .grid--4 { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 480px) {
+      .grid--2, .grid--3, .grid--4 { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- SPLASH SCREEN -->
+  <div id="splash-layer"></div>
+
+  <!-- DRAWER OVERLAY -->
+  <div id="drawer-overlay" class="drawer-overlay"></div>
+
+  <!-- APP CONTAINER -->
+  <div id="app" class="flex flex-col" style="min-height: 100vh;">
+    <!-- HEADER -->
+    <div id="app-header"></div>
+
+    <!-- MAIN VIEW -->
+    <main id="page-content" class="container" style="flex: 1; padding-top: var(--header-height);"></main>
+
+    <!-- FOOTER -->
+    <div id="app-footer"></div>
+
+    <!-- CART SIDEBAR DRAWER -->
+    <div id="cart-drawer-container"></div>
+  </div>
+
+  <!-- TOAST NOTIFICATION STACK -->
+  <div id="toast-container" class="toast-container"></div>
+
+  <!-- ==========================================================================
+       JAVASCRIPT APPLICATION ENGINE
+       ========================================================================== -->
+  <script type="module">
+    // Core database of products matching the generated assets
+    const productsList = [
+      {
+        id: "prod-1",
+        name: "Cajas de Cartón Heavy Duty (Paquete de 25)",
+        description: "Cajas de cartón corrugado de doble pared, ideales para el transporte de mercancías pesadas o de alta fragilidad. Máxima durabilidad y resistencia al apilamiento industrial.",
+        price: 450.00,
+        category: "Cajas",
+        image: "/assets/products/boxes.png",
+        rating: 4.8,
+        reviews: 124,
+        stock: 50,
+        features: [
+          "Doble pared corrugada de alta resistencia",
+          "Medidas estándar: 40x30x30 cm",
+          "Soporta hasta 30 kg de carga estática",
+          "100% reciclable y sostenible"
+        ]
+      },
+      {
+        id: "prod-2",
+        name: "Cinta Adhesiva Industrial Extra Fuerte (6 Rollos)",
+        description: "Cinta de empaque de alta adherencia térmica y resistencia al rasgado. Excelente rendimiento para sellado de cajas y fijación de paquetes industriales pesados.",
+        price: 120.00,
+        category: "Cintas",
+        image: "/assets/products/tape.png",
+        rating: 4.7,
+        reviews: 89,
+        stock: 120,
+        features: [
+          "Adhesivo acrílico de alta adherencia",
+          "Ancho: 48 mm, Largo: 100 metros",
+          "Resistente a la humedad y temperaturas extremas",
+          "Uso manual o con dispensador automático"
+        ]
+      },
+      {
+        id: "prod-3",
+        name: "Rollo de Plástico de Burbujas Protector (1x50m)",
+        description: "Material de empaque acolchado para máxima protección contra golpes, vibraciones y raspaduras durante el transporte logístico o almacenaje prolongado.",
+        price: 225.00,
+        category: "Protección",
+        image: "/assets/products/bubblewrap.png",
+        rating: 4.9,
+        reviews: 210,
+        stock: 40,
+        features: [
+          "Burbuja hermética de 10 mm de diámetro",
+          "Excelente flexibilidad y adaptabilidad",
+          "Ligero de peso para reducir costos de envío",
+          "Ideal para vidrio, electrónica y piezas delicadas"
+        ]
+      },
+      {
+        id: "prod-4",
+        name: "Tarima de Madera Premium Certificada (Unidad)",
+        description: "Palet o tarima de madera nueva tratada con calor bajo norma internacional ISPM 15, ideal para exportación, estiba y organización de almacenes automatizados.",
+        price: 850.00,
+        category: "Tarimas",
+        image: "/assets/products/pallets.png",
+        rating: 4.8,
+        reviews: 56,
+        stock: 25,
+        features: [
+          "Madera de pino secada al horno y tratada",
+          "Dimensiones: 120x100 cm (Medida estándar)",
+          "Capacidad de carga dinámica: 1.5 toneladas",
+          "Entrada de 4 vías para montacargas y patines"
+        ]
+      },
+      {
+        id: "prod-5",
+        name: "Film Stretch / Película Estirable para Palets (4 Rollos)",
+        description: "Film plástico estirable transparente de alta elongación y memoria térmica para envoltura segura y fijación de cargas sobre tarimas en almacenes e industrias.",
+        price: 380.00,
+        category: "Film",
+        image: "/assets/products/stretchfilm.png",
+        rating: 4.6,
+        reviews: 95,
+        stock: 80,
+        features: [
+          "Espesor: 80 gauge (20 micras) súper resistente",
+          "Estiramiento pre-tensionado de hasta 300%",
+          "Excelente adherencia interna sin residuos",
+          "Previene la humedad, el polvo y el robo"
+        ]
+      }
+    ];
+
+    // INITIALIZE PERSISTENT STORAGE WRAPPER
+    const storage = {
+      get(key, fallback) {
+        const item = localStorage.getItem('indupack_' + key);
+        return item ? JSON.parse(item) : fallback;
+      },
+      set(key, val) {
+        localStorage.setItem('indupack_' + key, JSON.stringify(val));
+      }
+    };
+
+    // GLOBAL STATE Proxy
+    const initialState = {
+      user: storage.get('user', null),
+      cart: storage.get('cart', []),
+      orders: storage.get('orders', []),
+      searchQuery: '',
+      activeCategory: 'Todos',
+      cartOpen: false,
+      currentHash: window.location.hash || '#/',
+      toast: null
+    };
+
+    const state = new Proxy(initialState, {
+      set(target, prop, val) {
+        target[prop] = val;
+        if (['user', 'cart', 'orders'].includes(prop)) {
+          storage.set(prop, val);
+        }
+        
+        // Trigger specific reactive view updates
+        if (prop === 'cart' || prop === 'user' || prop === 'currentHash') {
+          renderHeader();
+          renderCartDrawer();
+        }
+        if (prop === 'cartOpen') {
+          updateCartDrawerOpenState();
+        }
+        if (prop === 'toast' && val) {
+          triggerToast(val.msg, val.type);
+        }
+        return true;
+      }
+    });
+
+    // Helper functions
+    function showToast(msg, type = 'success') {
+      state.toast = { msg, type, id: Date.now() };
+    }
+
+    function formatMXN(val) {
+      return new Intl.NumberFormat('es-MX', { style: 'currency', currency: 'MXN' }).format(val);
+    }
+
+    // STATE OPERATIONS
+    const cartOps = {
+      add(prod, qty = 1) {
+        let cart = [...state.cart];
+        const existing = cart.findIndex(item => item.product.id === prod.id);
+        if (existing > -1) {
+          cart[existing].quantity += qty;
+        } else {
+          cart.push({ product: prod, quantity: qty });
+        }
+        state.cart = cart;
+        showToast(`¡${prod.name} agregado al carrito!`);
+      },
+      remove(prodId) {
+        state.cart = state.cart.filter(item => item.product.id !== prodId);
+        showToast('Producto eliminado del carrito.', 'info');
+      },
+      updateQty(prodId, qty) {
+        if (qty <= 0) {
+          this.remove(prodId);
+          return;
+        }
+        state.cart = state.cart.map(item => {
+          if (item.product.id === prodId) {
+            return { ...item, quantity: qty };
+          }
+          return item;
+        });
+      },
+      getCount() {
+        return state.cart.reduce((acc, curr) => acc + curr.quantity, 0);
+      },
+      getTotal() {
+        return state.cart.reduce((acc, curr) => acc + (curr.product.price * curr.quantity), 0);
+      }
+    };
+
+    const authOps = {
+      login(email, pass) {
+        const users = storage.get('registered_users', []);
+        const found = users.find(u => u.email === email && u.password === pass);
+        if (found) {
+          state.user = { name: found.name, email: found.email, address: found.address };
+          showToast(`¡Bienvenido de nuevo, ${found.name}!`);
+          return true;
+        }
+        // Demo fallback
+        if (email === 'demo@indupack.com' && pass === 'demo123') {
+          state.user = { name: 'Marlon Demo', email: 'demo@indupack.com', address: 'Av. Industrial 500, Monterrey' };
+          showToast(`¡Bienvenido, Marlon!`);
+          return true;
+        }
+        return false;
+      },
+      register(name, email, pass, address = '') {
+        const users = storage.get('registered_users', []);
+        if (users.some(u => u.email === email) || email === 'demo@indupack.com') {
+          return false;
+        }
+        const newUser = { name, email, password: pass, address };
+        users.push(newUser);
+        storage.set('registered_users', users);
+        state.user = { name, email, address };
+        showToast('¡Registro exitoso! Sesión iniciada.');
+        return true;
+      },
+      logout() {
+        state.user = null;
+        showToast('Sesión cerrada.', 'info');
+      },
+      updateProfile(name, address) {
+        if (!state.user) return false;
+        state.user = { ...state.user, name, address };
+        const users = storage.get('registered_users', []);
+        const idx = users.findIndex(u => u.email === state.user.email);
+        if (idx > -1) {
+          users[idx].name = name;
+          users[idx].address = address;
+          storage.set('registered_users', users);
+        }
+        showToast('Perfil actualizado correctamente.');
+        return true;
+      }
+    };
+
+    const orderOps = {
+      createOrder(shippingInfo) {
+        if (state.cart.length === 0) return null;
+        const newOrder = {
+          id: 'IND-' + Math.floor(100000 + Math.random() * 900000),
+          date: new Date().toLocaleDateString('es-MX', { year: 'numeric', month: 'long', day: 'numeric' }),
+          items: [...state.cart],
+          total: cartOps.getTotal(),
+          shippingInfo,
+          status: 'En camino'
+        };
+        const orders = [...state.orders];
+        orders.unshift(newOrder);
+        state.orders = orders;
+        state.cart = [];
+        showToast('¡Tu orden ha sido confirmada!');
+        return newOrder;
+      }
+    };
+
+    // TOAST NOTIFICATIONS RENDERER
+    function triggerToast(message, type) {
+      const container = document.getElementById('toast-container');
+      const toast = document.createElement('div');
+      toast.className = `toast toast--${type}`;
+      toast.innerHTML = `
+        <span>${type === 'success' ? '✓' : type === 'info' ? 'ℹ' : '⚠'}</span>
+        <div>${message}</div>
+      `;
+      container.appendChild(toast);
+      
+      setTimeout(() => {
+        toast.style.opacity = '0';
+        setTimeout(() => toast.remove(), 400);
+      }, 3000);
+    }
+
+    // STATIC RENDERERS
+    function renderHeader() {
+      const headerEl = document.getElementById('app-header');
+      const count = cartOps.getCount();
+      const user = state.user;
+      
+      headerEl.innerHTML = `
+        <header class="header">
+          <div class="header__inner container">
+            <a href="#/" class="header__logo">
+              <img src="/assets/logo.png" alt="Indupack" />
+              <span class="header__logo-text">INDUPACK</span>
+            </a>
+            
+            <nav class="header__nav">
+              <a href="#/" class="header__nav-link ${state.currentHash === '#/' ? 'header__nav-link--active' : ''}">Inicio</a>
+              <a href="#/catalog" class="header__nav-link ${state.currentHash === '#/catalog' ? 'header__nav-link--active' : ''}">Productos</a>
+              <a href="#/profile" class="header__nav-link ${state.currentHash === '#/profile' ? 'header__nav-link--active' : ''}">Mi Cuenta</a>
+            </nav>
+
+            <div class="header__actions">
+              <button id="nav-cart-btn" class="header__action-btn">
+                <span>🛒</span>
+                ${count > 0 ? `<span class="header__cart-badge">${count}</span>` : ''}
+              </button>
+              
+              ${user 
+                ? `<div class="flex items-center gap-2">
+                     <a href="#/profile" class="header__user-avatar">${user.name.charAt(0).toUpperCase()}</a>
+                     <button id="logout-btn" class="btn btn--outline btn--sm">Salir</button>
+                   </div>`
+                : `<a href="#/login" class="btn btn--primary btn--sm">Entrar</a>`
+              }
+            </div>
+          </div>
+        </header>
+      `;
+
+      // Header click attachments
+      document.getElementById('nav-cart-btn')?.addEventListener('click', () => {
+        state.cartOpen = true;
+      });
+      document.getElementById('logout-btn')?.addEventListener('click', () => {
+        authOps.logout();
+        window.location.hash = '#/';
+      });
+    }
+
+    function renderFooter() {
+      const footerEl = document.getElementById('app-footer');
+      footerEl.innerHTML = `
+        <footer class="footer">
+          <div class="container footer-grid">
+            <div class="footer-col">
+              <div class="header__logo mb-4">
+                <img src="/assets/logo.png" alt="Indupack" />
+                <span class="header__logo-text">INDUPACK</span>
+              </div>
+              <p class="text-muted" style="font-size: 0.875rem;">
+                Proveedor oficial de embalajes, cajas y tarimas para la industria logística nacional.
+              </p>
+            </div>
+            <div class="footer-col">
+              <h3>Productos</h3>
+              <div class="footer-links">
+                <a href="#/catalog" class="footer-link">Cajas de cartón</a>
+                <a href="#/catalog" class="footer-link">Película estirable</a>
+                <a href="#/catalog" class="footer-link">Tarimas de madera</a>
+                <a href="#/catalog" class="footer-link">Cintas adhesivas</a>
+              </div>
+            </div>
+            <div class="footer-col">
+              <h3>Soporte</h3>
+              <div class="footer-links">
+                <a href="#" class="footer-link">Preguntas Frecuentes</a>
+                <a href="#" class="footer-link">Envíos y Entregas</a>
+                <a href="#" class="footer-link">Políticas de Devolución</a>
+                <a href="#" class="footer-link">Contacto Directo</a>
+              </div>
+            </div>
+            <div class="footer-col">
+              <h3>Sede Monterrey</h3>
+              <p class="text-muted" style="font-size: 0.875rem;">
+                Parque Industrial Regiomontano, N.L. <br>
+                info@indupack.com <br>
+                +52 (81) 8299-1000
+              </p>
+            </div>
+          </div>
+          <div class="container" style="border-top: 1px solid var(--color-dark-border); padding-top: 2rem; text-align: center;">
+            <p class="text-muted" style="font-size: 0.75rem;">&copy; 2026 Indupack S.A. de C.V. Todos los derechos reservados.</p>
+          </div>
+        </footer>
+      `;
+    }
+
+    function renderCartDrawer() {
+      const container = document.getElementById('cart-drawer-container');
+      const count = cartOps.getCount();
+      const items = state.cart;
+      
+      container.innerHTML = `
+        <div class="cart-drawer ${state.cartOpen ? 'cart-drawer--open' : ''}">
+          <div class="cart-drawer__header">
+            <h3 class="flex items-center gap-2">🛒 Carrito de Compras <span>(${count})</span></h3>
+            <button id="close-drawer-btn" class="cart-drawer__close">&times;</button>
+          </div>
+          
+          <div class="cart-drawer__body">
+            ${items.length === 0 
+              ? `<div class="text-center mt-8">
+                   <p class="text-muted mb-4">El carrito está vacío</p>
+                   <a href="#/catalog" class="btn btn--primary btn--sm" id="empty-cart-go-btn">Ver Catálogo</a>
+                 </div>`
+              : items.map(item => `
+                  <div class="cart-item">
+                    <img src="${item.product.image}" alt="${item.product.name}" />
+                    <div class="cart-item__info">
+                      <div class="cart-item__name">${item.product.name}</div>
+                      <div class="cart-item__price">${formatMXN(item.product.price)}</div>
+                      <div class="cart-item__actions">
+                        <div class="cart-item__qty">
+                          <button class="cart-qty-dec cart-item__qty-btn" data-id="${item.product.id}">-</button>
+                          <span>${item.quantity}</span>
+                          <button class="cart-qty-inc cart-item__qty-btn" data-id="${item.product.id}">+</button>
+                        </div>
+                        <button class="cart-remove-item text-muted" data-id="${item.product.id}" style="color: var(--color-danger); font-size: 0.875rem;">Eliminar</button>
+                      </div>
+                    </div>
+                  </div>
+                `).join('')
+            }
+          </div>
+
+          ${items.length > 0 ? `
+            <div class="cart-drawer__footer">
+              <div class="cart-drawer__total-row">
+                <span>Subtotal:</span>
+                <span>${formatMXN(cartOps.getTotal())}</span>
+              </div>
+              <a href="#/checkout" class="btn btn--primary btn--full" id="drawer-checkout-btn">Proceder al Pago</a>
+            </div>
+          ` : ''}
+        </div>
+      `;
+
+      // Drawer binds
+      document.getElementById('close-drawer-btn')?.addEventListener('click', () => {
+        state.cartOpen = false;
+      });
+      document.getElementById('empty-cart-go-btn')?.addEventListener('click', () => {
+        state.cartOpen = false;
+      });
+      document.getElementById('drawer-checkout-btn')?.addEventListener('click', () => {
+        state.cartOpen = false;
+      });
+
+      // Quantity adjustments
+      document.querySelectorAll('.cart-qty-inc').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          const item = state.cart.find(i => i.product.id === e.target.dataset.id);
+          cartOps.updateQty(e.target.dataset.id, item.quantity + 1);
+        });
+      });
+      document.querySelectorAll('.cart-qty-dec').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          const item = state.cart.find(i => i.product.id === e.target.dataset.id);
+          cartOps.updateQty(e.target.dataset.id, item.quantity - 1);
+        });
+      });
+      document.querySelectorAll('.cart-remove-item').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          cartOps.remove(e.target.dataset.id);
+        });
+      });
+    }
+
+    function updateCartDrawerOpenState() {
+      const drawer = document.querySelector('.cart-drawer');
+      const overlay = document.getElementById('drawer-overlay');
+      if (state.cartOpen) {
+        drawer?.classList.add('cart-drawer--open');
+        overlay?.classList.add('drawer-overlay--visible');
+      } else {
+        drawer?.classList.remove('cart-drawer--open');
+        overlay?.classList.remove('drawer-overlay--visible');
+      }
+    }
+
+    // SPLASH SCREEN INITIALIZER
+    function setupSplash() {
+      const visited = localStorage.getItem('indupack_visited');
+      if (visited) return;
+
+      const layer = document.getElementById('splash-layer');
+      layer.innerHTML = `
+        <div id="splash-screen" class="splash flex flex-col items-center justify-center" style="
+          position: fixed;
+          inset: 0;
+          background: var(--color-dark);
+          z-index: var(--z-splash);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          transition: opacity 1s ease-out, visibility 1s;
+        ">
+          <div class="splash__content flex flex-col items-center gap-4 text-center">
+            <img src="/assets/logo.png" alt="Indupack" class="splash__logo animate-float" style="
+              width: 140px;
+              height: 140px;
+              object-fit: contain;
+              filter: drop-shadow(0 0 20px rgba(16, 185, 129, 0.4));
+            " />
+            <h1 style="font-size: 2.25rem; font-weight: 800; color: var(--color-white); letter-spacing: 0.05em; margin-top: 1rem;">
+              INDUPACK
+            </h1>
+            <p class="text-muted" style="font-size: 0.875rem;">Soluciones Premium en Empaque Industrial</p>
+            <div class="loader mt-6" style="
+              width: 32px;
+              height: 32px;
+              border: 3px solid var(--color-dark-border);
+              border-top-color: var(--color-primary-400);
+              border-radius: 50%;
+              animation: spin 0.8s linear infinite;
+            "></div>
+          </div>
+        </div>
+      `;
+
+      // Lock body scroll
+      document.body.style.overflow = 'hidden';
+
+      setTimeout(() => {
+        const splash = document.getElementById('splash-screen');
+        if (splash) {
+          splash.style.opacity = '0';
+          splash.style.visibility = 'hidden';
+          document.body.style.overflow = '';
+          localStorage.setItem('indupack_visited', 'true');
+          setTimeout(() => splash.remove(), 1000);
+        }
+      }, 2500);
+    }
+
+    // ==========================================================================
+    // PAGES CONTROLLER
+    // ==========================================================================
+    const pages = {
+      home() {
+        const content = document.getElementById('page-content');
+        
+        content.innerHTML = `
+          <!-- HERO -->
+          <section class="hero" style="margin-left: -1.5rem; margin-right: -1.5rem; padding-left: 1.5rem; padding-right: 1.5rem; border-radius: 0 0 var(--radius-2xl) var(--radius-2xl);">
+            <div class="container hero__inner">
+              <div class="hero__content">
+                <span class="hero__badge">⚡ Soluciones Logísticas Premium</span>
+                <h1 class="hero__title">Empaque Industrial de <span>Calidad Suprema</span></h1>
+                <p class="hero__subtitle">
+                  Especialistas en proteger tu mercancía pesada con cajas ultra-resistentes, tarimas certificadas de madera y embalajes de alta adherencia.
+                </p>
+                <div class="hero__actions">
+                  <a href="#/catalog" class="btn btn--primary">Explorar Productos</a>
+                  <a href="#/catalog?cat=Tarimas" class="btn btn--outline">Ver Tarimas</a>
+                </div>
+              </div>
+              <div class="hero__visual flex justify-center">
+                <img src="/assets/products/boxes.png" alt="Indupack Box" class="hero__visual-img animate-float" style="max-height: 400px;" />
+              </div>
+            </div>
+          </section>
+
+          <!-- CORPORATE HIGHLIGHTS -->
+          <section class="mt-8 mb-8">
+            <h2 class="text-center mb-8 font-bold" style="font-size: 2rem;">¿Por qué elegir Indupack?</h2>
+            <div class="grid grid--3">
+              <div class="card p-6" style="padding: 2rem;">
+                <span style="font-size: 2.5rem;">🛡️</span>
+                <h3 class="font-bold mt-4 mb-2">Máxima Protección</h3>
+                <p class="text-muted">Diseñado rigurosamente para resistir impactos y apilamiento en bodegas o trailers.</p>
+              </div>
+              <div class="card p-6" style="padding: 2rem;">
+                <span style="font-size: 2.5rem;">🌱</span>
+                <h3 class="font-bold mt-4 mb-2">Materiales Sostenibles</h3>
+                <p class="text-muted">Todos nuestros cartones y maderas provienen de fuentes certificadas ecorresponsables.</p>
+              </div>
+              <div class="card p-6" style="padding: 2rem;">
+                <span style="font-size: 2.5rem;">🚚</span>
+                <h3 class="font-bold mt-4 mb-2">Envíos de Inmediato</h3>
+                <p class="text-muted">Logística ágil en Monterrey y cobertura nacional para surtir tu almacén a tiempo.</p>
+              </div>
+            </div>
+          </section>
+
+          <!-- HIGHLIGHTED PRODUCTS -->
+          <section class="mb-8">
+            <div class="flex justify-between items-center mb-6">
+              <h2 class="font-bold" style="font-size: 1.75rem;">Productos Destacados</h2>
+              <a href="#/catalog" class="text-primary font-semibold">Ver Todos &rarr;</a>
+            </div>
+            <div class="grid grid--4">
+              ${productsList.slice(0, 4).map(prod => `
+                <div class="card product-card">
+                  <div class="product-card__img-wrap">
+                    <img src="${prod.image}" alt="${prod.name}" class="product-card__img" />
+                    <span class="product-card__category">${prod.category}</span>
+                  </div>
+                  <div class="product-card__body">
+                    <h3 class="product-card__name">${prod.name}</h3>
+                    <div class="rating mb-4">
+                      <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                      <span class="text-muted" style="font-size: 0.75rem; margin-left: 0.25rem;">(${prod.reviews})</span>
+                    </div>
+                    <div class="product-card__price">${formatMXN(prod.price)}</div>
+                    <div class="flex gap-2">
+                      <a href="#/product/${prod.id}" class="btn btn--outline btn--sm flex-1">Detalles</a>
+                      <button class="btn btn--primary btn--sm add-to-cart-btn" data-id="${prod.id}">Añadir</button>
+                    </div>
+                  </div>
+                </div>
+              `).join('')}
+            </div>
+          </section>
+        `;
+
+        // Bind clicks
+        content.querySelectorAll('.add-to-cart-btn').forEach(btn => {
+          btn.addEventListener('click', (e) => {
+            const prod = productsList.find(p => p.id === e.target.dataset.id);
+            cartOps.add(prod, 1);
+          });
+        });
+      },
+
+      catalog(params, query) {
+        const activeCat = query.cat || 'Todos';
+        const searchInputVal = state.searchQuery || '';
+        
+        let filtered = productsList;
+        if (activeCat !== 'Todos') {
+          filtered = filtered.filter(p => p.category === activeCat);
+        }
+        if (searchInputVal) {
+          filtered = filtered.filter(p => p.name.toLowerCase().includes(searchInputVal.toLowerCase()));
+        }
+
+        const content = document.getElementById('page-content');
+        content.innerHTML = `
+          <div class="catalog-layout">
+            <!-- SIDEBAR FILTERS -->
+            <aside class="catalog-filters">
+              <h3 class="filter-section-title">Categorías</h3>
+              <div class="filter-pills">
+                <div class="filter-pill ${activeCat === 'Todos' ? 'filter-pill--active' : ''}" data-cat="Todos">
+                  <span>Todos los productos</span>
+                  <span>(${productsList.length})</span>
+                </div>
+                ${['Cajas', 'Cintas', 'Protección', 'Tarimas', 'Film'].map(c => {
+                  const count = productsList.filter(p => p.category === c).length;
+                  return `
+                    <div class="filter-pill ${activeCat === c ? 'filter-pill--active' : ''}" data-cat="${c}">
+                      <span>${c}</span>
+                      <span>(${count})</span>
+                    </div>
+                  `;
+                }).join('')}
+              </div>
+            </aside>
+
+            <!-- MAIN GRID -->
+            <div>
+              <div class="flex justify-between items-center mb-6" style="flex-wrap: wrap; gap: 1rem;">
+                <div>
+                  <h1 class="font-bold" style="font-size: 1.75rem;">Catálogo Industrial</h1>
+                  <p class="text-muted" style="font-size: 0.875rem;">Suministros robustos para embalaje</p>
+                </div>
+                <!-- SEARCH INPUT -->
+                <div style="position: relative; width: 100%; max-width: 320px;">
+                  <input type="text" id="catalog-search" class="input" placeholder="Buscar empaque..." value="${searchInputVal}" style="padding-left: 2.25rem;" />
+                  <span style="position: absolute; left: 0.75rem; top: 50%; transform: translateY(-50%); color: var(--color-gray-600);">🔍</span>
+                </div>
+              </div>
+
+              ${filtered.length === 0 
+                ? `<div class="text-center mt-8">
+                     <p class="text-muted" style="font-size: 1.125rem;">No encontramos coincidencias para tu búsqueda.</p>
+                   </div>`
+                : `<div class="grid grid--3">
+                     ${filtered.map(prod => `
+                       <div class="card product-card">
+                         <div class="product-card__img-wrap">
+                           <img src="${prod.image}" alt="${prod.name}" class="product-card__img" />
+                           <span class="product-card__category">${prod.category}</span>
+                         </div>
+                         <div class="product-card__body">
+                           <h3 class="product-card__name">${prod.name}</h3>
+                           <div class="rating mb-4">
+                             <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                             <span class="text-muted" style="font-size: 0.75rem;">(${prod.reviews})</span>
+                           </div>
+                           <div class="product-card__price">${formatMXN(prod.price)}</div>
+                           <div class="flex gap-2">
+                             <a href="#/product/${prod.id}" class="btn btn--outline btn--sm flex-1">Detalles</a>
+                             <button class="btn btn--primary btn--sm add-to-cart-btn" data-id="${prod.id}">Añadir</button>
+                           </div>
+                         </div>
+                       </div>
+                     `).join('')}
+                   </div>`
+              }
+            </div>
+          </div>
+        `;
+
+        // Binds
+        content.querySelectorAll('.add-to-cart-btn').forEach(btn => {
+          btn.addEventListener('click', (e) => {
+            const prod = productsList.find(p => p.id === e.target.dataset.id);
+            cartOps.add(prod, 1);
+          });
+        });
+
+        content.querySelectorAll('.filter-pill').forEach(pill => {
+          pill.addEventListener('click', (e) => {
+            const cat = e.currentTarget.dataset.cat;
+            window.location.hash = cat === 'Todos' ? '#/catalog' : `#/catalog?cat=${cat}`;
+          });
+        });
+
+        const search = document.getElementById('catalog-search');
+        if (search) {
+          search.addEventListener('input', (e) => {
+            state.searchQuery = e.target.value;
+            // Debounce or instant reload
+            let route = `#/catalog`;
+            if (activeCat !== 'Todos') route += `?cat=${activeCat}`;
+            // Simulating instant reactive search update
+            pages.catalog(null, { cat: activeCat });
+          });
+        }
+      },
+
+      product(params) {
+        const prod = productsList.find(p => p.id === params.id);
+        const content = document.getElementById('page-content');
+        
+        if (!prod) {
+          content.innerHTML = `<div class="text-center mt-8"><p class="text-muted">Producto no encontrado</p></div>`;
+          return;
+        }
+
+        content.innerHTML = `
+          <div class="product-detail-layout">
+            <!-- IMAGE GALLERY -->
+            <div>
+              <img src="${prod.image}" alt="${prod.name}" class="product-detail-img" style="width: 100%;" />
+            </div>
+
+            <!-- PRODUCT SUMMARY -->
+            <div>
+              <span class="badge badge--primary mb-4">${prod.category}</span>
+              <h1 class="font-bold mb-4" style="font-size: 2.25rem; line-height: 1.2;">${prod.name}</h1>
+              
+              <div class="rating mb-4">
+                <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                <span class="text-muted" style="font-size: 0.875rem; margin-left: 0.5rem;">(${prod.reviews} Reseñas de Clientes)</span>
+              </div>
+
+              <div class="price mb-6" style="font-size: 2rem; color: var(--color-primary-400); font-weight: 800;">
+                ${formatMXN(prod.price)}
+              </div>
+
+              <p class="text-muted mb-6" style="line-height: 1.6;">
+                ${prod.description}
+              </p>
+
+              <!-- Features -->
+              <h3 class="font-bold mb-3">Especificaciones Técnicas:</h3>
+              <div class="detail-features mb-8">
+                ${prod.features.map(f => `<div class="detail-feature-item">${f}</div>`).join('')}
+              </div>
+
+              <!-- Cart actions -->
+              <div class="flex items-center gap-4 mt-8">
+                <div class="flex items-center gap-2" style="border: 1px solid var(--color-dark-border); border-radius: var(--radius-md); padding: 0.5rem;">
+                  <button id="qty-dec" class="font-bold text-primary p-2">-</button>
+                  <span id="qty-val" class="font-semibold" style="min-width: 2rem; text-align: center;">1</span>
+                  <button id="qty-inc" class="font-bold text-primary p-2">+</button>
+                </div>
+                <button id="add-to-cart-detail-btn" class="btn btn--primary flex-1">Añadir al Carrito</button>
+              </div>
+            </div>
+          </div>
+        `;
+
+        // Detail binds
+        let currentQty = 1;
+        const qtyVal = document.getElementById('qty-val');
+        
+        document.getElementById('qty-inc')?.addEventListener('click', () => {
+          currentQty++;
+          qtyVal.textContent = currentQty;
+        });
+
+        document.getElementById('qty-dec')?.addEventListener('click', () => {
+          if (currentQty > 1) {
+            currentQty--;
+            qtyVal.textContent = currentQty;
+          }
+        });
+
+        document.getElementById('add-to-cart-detail-btn')?.addEventListener('click', () => {
+          cartOps.add(prod, currentQty);
+        });
+      },
+
+      checkout() {
+        const content = document.getElementById('page-content');
+        if (state.cart.length === 0) {
+          content.innerHTML = `
+            <div class="text-center mt-8">
+              <p class="text-muted mb-4">No tienes productos en el carrito para realizar un pago.</p>
+              <a href="#/catalog" class="btn btn--primary">Ir al Catálogo</a>
+            </div>
+          `;
+          return;
+        }
+
+        const total = cartOps.getTotal();
+        const user = state.user || { name: '', email: '', address: '' };
+
+        content.innerHTML = `
+          <div class="checkout-layout">
+            <!-- Form panel -->
+            <div class="card p-6" style="padding: 2rem;">
+              <h2 class="font-bold mb-6" style="font-size: 1.5rem;">Información de Envío</h2>
+              <form id="checkout-form" class="flex flex-col gap-6">
+                <div class="input-group">
+                  <label>Nombre del Contacto / Razón Social</label>
+                  <input type="text" id="ship-name" class="input" placeholder="Nombre completo..." value="${user.name}" required />
+                </div>
+                <div class="input-group">
+                  <label>Correo Electrónico de Facturación</label>
+                  <input type="email" id="ship-email" class="input" placeholder="correo@ejemplo.com" value="${user.email}" required />
+                </div>
+                <div class="input-group">
+                  <label>Dirección Completa de Entrega (Almacén / Planta)</label>
+                  <input type="text" id="ship-address" class="input" placeholder="Calle, Número, Colonia, C.P...." value="${user.address}" required />
+                </div>
+                <div class="input-group">
+                  <label>Teléfono de Contacto Industrial</label>
+                  <input type="tel" id="ship-phone" class="input" placeholder="81-xxxx-xxxx" required />
+                </div>
+                <button type="submit" class="btn btn--primary mt-4">Confirmar Pedido Industrial</button>
+              </form>
+            </div>
+
+            <!-- Review Summary panel -->
+            <div class="card p-6" style="padding: 2rem; align-self: start;">
+              <h3 class="font-bold mb-4" style="font-size: 1.25rem;">Resumen de la Compra</h3>
+              
+              <div class="flex flex-col gap-4 mb-6">
+                ${state.cart.map(item => `
+                  <div class="flex justify-between items-center" style="font-size: 0.875rem;">
+                    <div>
+                      <span class="font-semibold">${item.product.name}</span>
+                      <span class="text-muted">x${item.quantity}</span>
+                    </div>
+                    <span>${formatMXN(item.product.price * item.quantity)}</span>
+                  </div>
+                `).join('')}
+              </div>
+
+              <div class="divider" style="height: 1px; background: var(--color-dark-border); margin: 1rem 0;"></div>
+              
+              <div class="flex justify-between font-bold" style="font-size: 1.125rem;">
+                <span>Total Estimado:</span>
+                <span class="text-primary">${formatMXN(total)}</span>
+              </div>
+            </div>
+          </div>
+        `;
+
+        // Checkout submit bind
+        document.getElementById('checkout-form')?.addEventListener('submit', (e) => {
+          e.preventDefault();
+          const shippingInfo = {
+            name: document.getElementById('ship-name').value,
+            email: document.getElementById('ship-email').value,
+            address: document.getElementById('ship-address').value,
+            phone: document.getElementById('ship-phone').value
+          };
+          
+          const newOrder = orderOps.createOrder(shippingInfo);
+          if (newOrder) {
+            // Redirect to profile to see orders
+            window.location.hash = '#/profile';
+          }
+        });
+      },
+
+      profile() {
+        const content = document.getElementById('page-content');
+        if (!state.user) {
+          content.innerHTML = `
+            <div class="text-center mt-8">
+              <p class="text-muted mb-4">Debe iniciar sesión para ver su perfil e historial de compras.</p>
+              <a href="#/login" class="btn btn--primary">Iniciar Sesión</a>
+            </div>
+          `;
+          return;
+        }
+
+        const user = state.user;
+        const orders = state.orders;
+
+        content.innerHTML = `
+          <div class="profile-layout">
+            <!-- Profile Sidebar -->
+            <div class="profile-sidebar">
+              <div class="profile-avatar-big flex items-center justify-center" style="
+                width: 80px;
+                height: 80px;
+                background: linear-gradient(135deg, var(--color-primary-500), var(--color-primary-700));
+                border-radius: 50%;
+                font-size: 2rem;
+                font-weight: 700;
+                margin: 0 auto 1rem auto;
+              ">
+                ${user.name.charAt(0).toUpperCase()}
+              </div>
+              <h2 class="text-center font-bold" style="font-size: 1.125rem;">${user.name}</h2>
+              <p class="text-center text-muted" style="font-size: 0.875rem; margin-bottom: 2rem;">${user.email}</p>
+              
+              <div class="flex flex-col gap-2">
+                <button id="profile-edit-trigger" class="btn btn--outline btn--sm btn--full">Editar Perfil</button>
+              </div>
+            </div>
+
+            <!-- Profile dashboard / main view -->
+            <div class="card p-6" style="padding: 2rem;">
+              <!-- Edit details box -->
+              <div id="profile-edit-box" class="mb-8 hidden" style="background: var(--color-dark-surface); padding: 1.5rem; border-radius: var(--radius-lg); border: 1px solid var(--color-dark-border);">
+                <h3 class="font-bold mb-4">Actualizar Detalles de Cuenta</h3>
+                <form id="profile-update-form" class="flex flex-col gap-4">
+                  <div class="input-group">
+                    <label>Nombre de Razón Social</label>
+                    <input type="text" id="prof-name" class="input" value="${user.name}" required />
+                  </div>
+                  <div class="input-group">
+                    <label>Dirección Fiscal / Entrega</label>
+                    <input type="text" id="prof-address" class="input" value="${user.address}" required />
+                  </div>
+                  <div class="flex gap-2">
+                    <button type="submit" class="btn btn--primary btn--sm">Guardar Cambios</button>
+                    <button type="button" id="profile-edit-cancel" class="btn btn--ghost btn--sm">Cancelar</button>
+                  </div>
+                </form>
+              </div>
+
+              <!-- Orders history -->
+              <h3 class="font-bold mb-4" style="font-size: 1.25rem;">Historial de Pedidos Logísticos</h3>
+              ${orders.length === 0 
+                ? `<p class="text-muted">Aún no has realizado ninguna compra industrial.</p>`
+                : `
+                  <div style="overflow-x: auto;">
+                    <table style="width: 100%; border-collapse: collapse; text-align: left;">
+                      <thead>
+                        <tr style="border-bottom: 2px solid var(--color-dark-border); color: var(--color-gray-400); font-size: 0.875rem;">
+                          <th style="padding: 0.75rem 0.5rem;">Pedido ID</th>
+                          <th style="padding: 0.75rem 0.5rem;">Fecha</th>
+                          <th style="padding: 0.75rem 0.5rem;">Total</th>
+                          <th style="padding: 0.75rem 0.5rem;">Estado</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        ${orders.map(o => `
+                          <tr style="border-bottom: 1px solid var(--color-dark-border); font-size: 0.875rem;">
+                            <td style="padding: 0.75rem 0.5rem;" class="font-semibold text-primary">${o.id}</td>
+                            <td style="padding: 0.75rem 0.5rem;">${o.date}</td>
+                            <td style="padding: 0.75rem 0.5rem;">${formatMXN(o.total)}</td>
+                            <td style="padding: 0.75rem 0.5rem;"><span class="badge badge--primary">${o.status}</span></td>
+                          </tr>
+                        `).join('')}
+                      </tbody>
+                    </table>
+                  </div>
+                `
+              }
+            </div>
+          </div>
+        `;
+
+        // Binds
+        const editTrigger = document.getElementById('profile-edit-trigger');
+        const editBox = document.getElementById('profile-edit-box');
+        const editCancel = document.getElementById('profile-edit-cancel');
+        
+        editTrigger?.addEventListener('click', () => {
+          editBox?.classList.remove('hidden');
+        });
+
+        editCancel?.addEventListener('click', () => {
+          editBox?.classList.add('hidden');
+        });
+
+        document.getElementById('profile-update-form')?.addEventListener('submit', (e) => {
+          e.preventDefault();
+          const name = document.getElementById('prof-name').value;
+          const address = document.getElementById('prof-address').value;
+          if (authOps.updateProfile(name, address)) {
+            pages.profile();
+          }
+        });
+      },
+
+      login() {
+        const content = document.getElementById('page-content');
+        content.innerHTML = `
+          <div class="flex justify-center items-center" style="min-height: 60vh; padding: 2rem 0;">
+            <div class="card p-6" style="width: 100%; max-width: 400px; padding: 2rem;">
+              <h2 class="text-center font-bold mb-2" style="font-size: 1.5rem;">Iniciar Sesión</h2>
+              <p class="text-center text-muted mb-6" style="font-size: 0.875rem;">Ingresa a tu cuenta de comprador</p>
+              
+              <form id="login-form" class="flex flex-col gap-4">
+                <div class="input-group">
+                  <label>Correo Electrónico</label>
+                  <input type="email" id="login-email" class="input" placeholder="ejemplo@correo.com" required />
+                </div>
+                <div class="input-group">
+                  <label>Contraseña</label>
+                  <input type="password" id="login-pass" class="input" placeholder="••••••••" required />
+                </div>
+                <button type="submit" class="btn btn--primary mt-2">Ingresar</button>
+              </form>
+              
+              <div class="text-center mt-6" style="font-size: 0.875rem; color: var(--color-gray-400);">
+                ¿No tienes cuenta? <a href="#/register" class="text-primary font-semibold">Registrarse</a>
+              </div>
+              <div class="divider" style="margin: 1.5rem 0;"></div>
+              <div class="text-center text-muted" style="font-size: 0.75rem;">
+                Usuario demo: <span class="text-primary font-semibold">demo@indupack.com</span> <br>
+                Contraseña: <span class="text-primary font-semibold">demo123</span>
+              </div>
+            </div>
+          </div>
+        `;
+
+        document.getElementById('login-form')?.addEventListener('submit', (e) => {
+          e.preventDefault();
+          const email = document.getElementById('login-email').value;
+          const pass = document.getElementById('login-pass').value;
+          if (authOps.login(email, pass)) {
+            window.location.hash = '#/';
+          } else {
+            showToast('Credenciales incorrectas.', 'danger');
+          }
+        });
+      },
+
+      register() {
+        const content = document.getElementById('page-content');
+        content.innerHTML = `
+          <div class="flex justify-center items-center" style="min-height: 60vh; padding: 2rem 0;">
+            <div class="card p-6" style="width: 100%; max-width: 400px; padding: 2rem;">
+              <h2 class="text-center font-bold mb-2" style="font-size: 1.5rem;">Registro Corporativo</h2>
+              <p class="text-center text-muted mb-6" style="font-size: 0.875rem;">Crea tu cuenta de facturación y envíos</p>
+              
+              <form id="register-form" class="flex flex-col gap-4">
+                <div class="input-group">
+                  <label>Nombre de Razón Social</label>
+                  <input type="text" id="reg-name" class="input" placeholder="Razón social o nombre completo..." required />
+                </div>
+                <div class="input-group">
+                  <label>Correo Electrónico</label>
+                  <input type="email" id="reg-email" class="input" placeholder="compras@empresa.com" required />
+                </div>
+                <div class="input-group">
+                  <label>Dirección Fiscal Inicial</label>
+                  <input type="text" id="reg-address" class="input" placeholder="Calle, Número, C.P. ..." required />
+                </div>
+                <div class="input-group">
+                  <label>Contraseña</label>
+                  <input type="password" id="reg-pass" class="input" placeholder="Mínimo 6 caracteres" minlength="6" required />
+                </div>
+                <button type="submit" class="btn btn--primary mt-2">Crear Cuenta</button>
+              </form>
+              
+              <div class="text-center mt-6" style="font-size: 0.875rem; color: var(--color-gray-400);">
+                ¿Ya tienes cuenta? <a href="#/login" class="text-primary font-semibold">Iniciar Sesión</a>
+              </div>
+            </div>
+          </div>
+        `;
+
+        document.getElementById('register-form')?.addEventListener('submit', (e) => {
+          e.preventDefault();
+          const name = document.getElementById('reg-name').value;
+          const email = document.getElementById('reg-email').value;
+          const address = document.getElementById('reg-address').value;
+          const pass = document.getElementById('reg-pass').value;
+          
+          if (authOps.register(name, email, pass, address)) {
+            window.location.hash = '#/';
+          } else {
+            showToast('El correo ya está registrado.', 'danger');
+          }
+        });
+      }
+    };
+
+    // SPA HASH ROUTER ENGINE
+    function resolveRoute() {
+      const hash = window.location.hash || '#/';
+      state.currentHash = hash;
+      
+      // Close overlay and menu automatically on route navigation
+      state.cartOpen = false;
+      document.getElementById('drawer-overlay')?.classList.remove('drawer-overlay--visible');
+
+      // Routing split
+      let [routePath, queryString] = hash.split('?');
+      let params = {};
+      
+      // Dynamic parsing (product detail match)
+      if (routePath.startsWith('#/product/')) {
+        params.id = routePath.replace('#/product/', '');
+        pages.product(params);
+        return;
+      }
+
+      // Query String parsing
+      const query = {};
+      if (queryString) {
+        new URLSearchParams(queryString).forEach((val, key) => {
+          query[key] = val;
+        });
+      }
+
+      // Route mapping call
+      if (routePath === '#/' || routePath === '') {
+        pages.home();
+      } else if (routePath === '#/catalog') {
+        pages.catalog(null, query);
+      } else if (routePath === '#/checkout') {
+        pages.checkout();
+      } else if (routePath === '#/profile') {
+        pages.profile();
+      } else if (routePath === '#/login') {
+        pages.login();
+      } else if (routePath === '#/register') {
+        pages.register();
+      } else {
+        console.warn('Ruta desconocida, redirigiendo a Inicio.');
+        window.location.hash = '#/';
+      }
+    }
+
+    // MAIN BOOTSTRAP INITIALIZATION
+    document.addEventListener('DOMContentLoaded', () => {
+      // 1. Initial Render
+      renderHeader();
+      renderFooter();
+      renderCartDrawer();
+      setupSplash();
+
+      // 2. Setup Router listeners
+      window.addEventListener('hashchange', resolveRoute);
+      resolveRoute(); // Trigger first resolve
+
+      // 3. Setup overlay close drawer bind
+      document.getElementById('drawer-overlay')?.addEventListener('click', () => {
+        state.cartOpen = false;
+      });
+    });
+  </script>
+</body>
+</html>

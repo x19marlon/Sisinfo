@@ -1,0 +1,126 @@
+/* ============================================
+   INDUPACK — Design Tokens
+   ============================================ */
+
+:root {
+  /* ---- Green Palette ---- */
+  --color-primary-900: #064E3B;
+  --color-primary-800: #065F46;
+  --color-primary-700: #047857;
+  --color-primary-600: #059669;
+  --color-primary-500: #10B981;
+  --color-primary-400: #34D399;
+  --color-primary-300: #6EE7B7;
+  --color-primary-200: #A7F3D0;
+  --color-primary-100: #D1FAE5;
+  --color-primary-50:  #ECFDF5;
+
+  /* ---- Dark Mode Surfaces ---- */
+  --color-dark:        #0A0F0D;
+  --color-dark-card:   #111C17;
+  --color-dark-surface:#162A22;
+  --color-dark-border: #1E3A2F;
+  --color-dark-hover:  #1F4035;
+
+  /* ---- Neutral ---- */
+  --color-white:       #FFFFFF;
+  --color-gray-50:     #F9FAFB;
+  --color-gray-100:    #F3F4F6;
+  --color-gray-200:    #E5E7EB;
+  --color-gray-300:    #D1D5DB;
+  --color-gray-400:    #9CA3AF;
+  --color-gray-500:    #6B7280;
+  --color-gray-600:    #4B5563;
+  --color-gray-700:    #374151;
+  --color-gray-800:    #1F2937;
+  --color-gray-900:    #111827;
+
+  /* ---- Accent ---- */
+  --color-accent:      #F59E0B;
+  --color-accent-light:#FCD34D;
+  --color-danger:      #EF4444;
+  --color-danger-dark: #DC2626;
+  --color-success:     #10B981;
+  --color-info:        #3B82F6;
+
+  /* ---- Typography ---- */
+  --font-family:       'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-size-xs:      0.75rem;
+  --font-size-sm:      0.875rem;
+  --font-size-base:    1rem;
+  --font-size-lg:      1.125rem;
+  --font-size-xl:      1.25rem;
+  --font-size-2xl:     1.5rem;
+  --font-size-3xl:     1.875rem;
+  --font-size-4xl:     2.25rem;
+  --font-size-5xl:     3rem;
+  --font-size-6xl:     3.75rem;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold:  700;
+  --line-height-tight: 1.25;
+  --line-height-normal:1.5;
+  --line-height-relaxed:1.75;
+  --letter-spacing-tight: -0.025em;
+  --letter-spacing-wide:  0.025em;
+
+  /* ---- Spacing ---- */
+  --space-1:  0.25rem;
+  --space-2:  0.5rem;
+  --space-3:  0.75rem;
+  --space-4:  1rem;
+  --space-5:  1.25rem;
+  --space-6:  1.5rem;
+  --space-8:  2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-20: 5rem;
+  --space-24: 6rem;
+
+  /* ---- Border Radius ---- */
+  --radius-sm:  0.375rem;
+  --radius-md:  0.5rem;
+  --radius-lg:  0.75rem;
+  --radius-xl:  1rem;
+  --radius-2xl: 1.5rem;
+  --radius-full:9999px;
+
+  /* ---- Shadows (green-tinted) ---- */
+  --shadow-sm:  0 1px 2px rgba(6, 78, 59, 0.08);
+  --shadow-md:  0 4px 6px -1px rgba(6, 78, 59, 0.1), 0 2px 4px -2px rgba(6, 78, 59, 0.1);
+  --shadow-lg:  0 10px 15px -3px rgba(6, 78, 59, 0.12), 0 4px 6px -4px rgba(6, 78, 59, 0.1);
+  --shadow-xl:  0 20px 25px -5px rgba(6, 78, 59, 0.15), 0 8px 10px -6px rgba(6, 78, 59, 0.1);
+  --shadow-glow:0 0 20px rgba(16, 185, 129, 0.3);
+
+  /* ---- Glass ---- */
+  --glass-bg:    rgba(17, 28, 23, 0.75);
+  --glass-border:rgba(30, 58, 47, 0.5);
+  --glass-blur:  12px;
+
+  /* ---- Transitions ---- */
+  --transition-fast:   150ms ease;
+  --transition-base:   250ms ease;
+  --transition-slow:   400ms ease;
+  --transition-spring: 500ms cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  /* ---- Z-Index Scale ---- */
+  --z-dropdown:  50;
+  --z-sticky:    100;
+  --z-header:    200;
+  --z-drawer:    300;
+  --z-modal:     400;
+  --z-toast:     500;
+  --z-splash:    9999;
+
+  /* ---- Container ---- */
+  --container-sm:  640px;
+  --container-md:  768px;
+  --container-lg:  1024px;
+  --container-xl:  1280px;
+  --container-2xl: 1440px;
+
+  /* ---- Header ---- */
+  --header-height: 72px;
+}
